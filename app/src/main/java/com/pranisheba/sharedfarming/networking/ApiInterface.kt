@@ -9,6 +9,6 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
-  @GET("/sharedfarm/fund_opportunities/")
+  @GET("sharedfarm/fund_opportunities/")
   fun getFundOpportunities(): Call<List<FundOpportunity>>
 }

@@ -1,5 +1,6 @@
 package com.pranisheba.sharedfarming.networking
 
+import com.pranisheba.sharedfarming.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,7 +24,7 @@ class ApiClient {
         .build()
 
       retrofit = Retrofit.Builder()
-        .baseUrl("BASE_URL")
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()

@@ -11,4 +11,6 @@
   <string name="retype_password">Retype Password*</string>
   <string name="submit">Submit</string>
   <string name="already_registered_login">Already registered? Login</string>
+  <string name="phone_number_or_email">Phone Number or Email</string>
+  <string name="login">Login</string>
 </resources>

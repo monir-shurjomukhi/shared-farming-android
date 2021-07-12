@@ -12,7 +12,8 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.SharedFarming"
       android:usesCleartextTraffic="true">
-    <activity android:name=".ui.base.SignUpActivity"></activity>
+    <activity android:name=".ui.base.LoginActivity"></activity>
+    <activity android:name=".ui.base.SignUpActivity" />
     <activity android:name=".ui.home.FundDetailsActivity" />
     <activity
         android:name=".ui.base.MainActivity"

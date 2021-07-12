@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.base.SignUpActivity">
+    tools:context=".ui.base.LoginActivity">
 
   <ScrollView
       android:layout_width="0dp"
@@ -20,11 +20,11 @@
         android:padding="@dimen/activity_horizontal_margin">
 
       <com.google.android.material.textfield.TextInputLayout
-          android:id="@+id/phoneLayout"
+          android:id="@+id/usernameLayout"
           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:hint="@string/phone_number"
+          android:hint="@string/phone_number_or_email"
           app:errorEnabled="true"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -34,27 +34,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:textSize="20sp" />
-      </com.google.android.material.textfield.TextInputLayout>
-
-      <com.google.android.material.textfield.TextInputLayout
-          android:id="@+id/emailLayout"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:hint="@string/email"
-          app:errorEnabled="true"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/phoneLayout"
-          app:layout_constraintVertical_chainStyle="packed">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:textSize="20sp" />
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +47,7 @@
           app:errorEnabled="true"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/emailLayout"
+          app:layout_constraintTop_toBottomOf="@id/usernameLayout"
           app:layout_constraintVertical_chainStyle="packed"
           app:passwordToggleEnabled="true">
 
@@ -79,51 +58,18 @@
             android:textSize="20sp" />
       </com.google.android.material.textfield.TextInputLayout>
 
-      <com.google.android.material.textfield.TextInputLayout
-          android:id="@+id/retypePasswordLayout"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:hint="@string/retype_password"
-          app:errorEnabled="true"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/passwordLayout"
-          app:layout_constraintVertical_chainStyle="packed"
-          app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPostalAddress"
-            android:textSize="20sp" />
-      </com.google.android.material.textfield.TextInputLayout>
-
       <com.google.android.material.button.MaterialButton
-          android:id="@+id/signUpButton"
+          android:id="@+id/loginButton"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
           android:padding="8dp"
-          android:text="Sign Up"
+          android:text="@string/login"
           android:textAllCaps="false"
           android:textSize="24sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/retypePasswordLayout" />
-
-      <com.google.android.material.textview.MaterialTextView
-          android:id="@+id/loginTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/already_registered_login"
-          android:textColor="@color/purple_500"
-          android:textSize="20sp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/signUpButton" />
+          app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

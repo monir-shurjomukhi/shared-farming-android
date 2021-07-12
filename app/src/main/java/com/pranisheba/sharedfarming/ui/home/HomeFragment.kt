@@ -9,11 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.databinding.FragmentHomeBinding
-import com.pranisheba.sharedfarming.model.FundOpportunity
-import com.pranisheba.sharedfarming.networking.ApiClient
-import com.pranisheba.sharedfarming.networking.ApiInterface
-import retrofit2.Call
-import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
@@ -37,23 +32,11 @@ class HomeFragment : Fragment() {
     val root: View = binding.root
 
     val textView: TextView = binding.textHome
-    homeViewModel.text.observe(viewLifecycleOwner, Observer {
-      textView.text = it
+    homeViewModel.fundOpportunities.observe(viewLifecycleOwner, Observer {
+      textView.text = it.toString()
     })
 
-    val apiClient = ApiClient().getApiClient()?.create<ApiInterface>(ApiInterface::class.java)
-    apiClient?.getFundOpportunities()?.enqueue(object : retrofit2.Callback<List<FundOpportunity>> {
-      override fun onResponse(
-        call: Call<List<FundOpportunity>>,
-        response: Response<List<FundOpportunity>>
-      ) {
-        homeViewModel.setText(response.body().toString())
-      }
-
-      override fun onFailure(call: Call<List<FundOpportunity>>, t: Throwable) {
-
-      }
-    })
+    homeViewModel.getFundOpportunities()
 
     return root
   }

@@ -11,16 +11,29 @@ import com.pranisheba.sharedfarming.model.FundOpportunity
 import com.squareup.picasso.Picasso
 
 
-class HorizontalAdapter(private val list: List<FundOpportunity>) :
-  RecyclerView.Adapter<HorizontalAdapter.MyView>() {
+class HorizontalAdapter(
+  private val list: List<FundOpportunity>,
+  private val onItemClicked: (position: Int) -> Unit
+) :
+  RecyclerView.Adapter<HorizontalAdapter.MyViewHolder>() {
 
-  class MyView(view: View) : RecyclerView.ViewHolder(view) {
+  class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit) :
+    RecyclerView.ViewHolder(view), View.OnClickListener {
+
+    init {
+      view.setOnClickListener(this)
+    }
+
     var image: ImageView = view.findViewById(R.id.image)
     var name: TextView = view.findViewById(R.id.name)
     var price: TextView = view.findViewById(R.id.price)
+
+    override fun onClick(v: View?) {
+      onItemClicked(adapterPosition)
+    }
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
     val itemView: View = LayoutInflater
       .from(parent.context)
       .inflate(
@@ -28,10 +41,10 @@ class HorizontalAdapter(private val list: List<FundOpportunity>) :
         parent,
         false
       )
-    return MyView(itemView)
+    return MyViewHolder(itemView, onItemClicked)
   }
 
-  override fun onBindViewHolder(holder: MyView, position: Int) {
+  override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
     val listData = list[position].image
 
     //Loading Image into view

@@ -12,9 +12,10 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.SharedFarming"
       android:usesCleartextTraffic="true">
-    <activity android:name=".ui.home.FundDetailsActivity"></activity>
+    <activity android:name=".ui.base.SignUpActivity"></activity>
+    <activity android:name=".ui.home.FundDetailsActivity" />
     <activity
-        android:name=".ui.MainActivity"
+        android:name=".ui.base.MainActivity"
         android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

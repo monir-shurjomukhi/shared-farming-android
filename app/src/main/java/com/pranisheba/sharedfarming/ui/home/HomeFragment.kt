@@ -1,5 +1,6 @@
 package com.pranisheba.sharedfarming.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pranisheba.sharedfarming.databinding.FragmentHomeBinding
+import com.pranisheba.sharedfarming.model.FundOpportunity
+import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
 
 
 class HomeFragment : Fragment() {
@@ -20,6 +23,8 @@ class HomeFragment : Fragment() {
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
+
+  private var fundOpportunities: List<FundOpportunity>? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -37,8 +42,12 @@ class HomeFragment : Fragment() {
       binding.recyclerView.layoutManager =
         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-      //setting adapter to recycler
-      binding.recyclerView.adapter = HorizontalAdapter(it, ::onFundItemClick)
+      it.let {
+        fundOpportunities = it
+
+        //setting adapter to recycler
+        binding.recyclerView.adapter = HorizontalAdapter(it, ::onFundItemClick)
+      }
     })
 
     homeViewModel.getFundOpportunities()
@@ -48,6 +57,9 @@ class HomeFragment : Fragment() {
 
   private fun onFundItemClick(position: Int) {
     Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
+    val intent = Intent(context, FundDetailsActivity::class.java)
+    intent.putExtra(FUND_OPPORTUNITY, fundOpportunities?.get(position))
+    startActivity(intent)
   }
 
   override fun onDestroyView() {

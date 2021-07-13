@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Location(
-  val id: Int?,
-  val division: Division?,
-  val name: String?,
-  val bn_name: String?
+  var id: Int?,
+  var division: Division?,
+  var name: String?,
+  var bn_name: String?
 ) : Parcelable

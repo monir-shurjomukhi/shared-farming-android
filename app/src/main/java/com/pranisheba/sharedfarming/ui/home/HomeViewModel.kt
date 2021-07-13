@@ -20,7 +20,7 @@ class HomeViewModel : ViewModel() {
     get() = _fundOpportunities
 
   fun getFundOpportunities() {
-    val apiClient = ApiClient().getApiClient()?.create<ApiInterface>(ApiInterface::class.java)
+    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
     apiClient?.getFundOpportunities()?.enqueue(object : retrofit2.Callback<List<FundOpportunity>> {
       override fun onResponse(
         call: Call<List<FundOpportunity>>,

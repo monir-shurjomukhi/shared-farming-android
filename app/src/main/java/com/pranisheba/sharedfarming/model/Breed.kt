@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Breed(
-  val id: Int?,
-  val name: String?,
-  val bn_name: String?,
-  val description: String?
+  var id: Int?,
+  var name: String?,
+  var bn_name: String?,
+  var description: String?
 ) : Parcelable

@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-data class Division(
-  var id: Int?,
-  var name: String?,
-  var bn_name: String?
+data class UserLogin(
+  var username: String?,
+  var password: String?,
+  var token: String?
 ) : Parcelable

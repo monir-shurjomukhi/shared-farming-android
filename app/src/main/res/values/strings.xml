@@ -6,11 +6,21 @@
   <string name="fund_opportunities">Fund Opportunities</string>
   <string name="buy_now">Buy Now</string>
   <string name="phone_number">Phone Number*</string>
+  <string name="phone_number_required">Phone Number Required</string>
   <string name="email">Email</string>
+  <string name="email_required">Email Required</string>
   <string name="password">Password*</string>
+  <string name="password_required">Password Required</string>
   <string name="retype_password">Retype Password*</string>
+  <string name="retype_password_required">Retype Password Required</string>
   <string name="submit">Submit</string>
   <string name="already_registered_login">Already registered? Login</string>
   <string name="phone_number_or_email">Phone Number or Email</string>
+  <string name="phone_number_or_email_required">Phone Number or Email Required</string>
   <string name="login">Login</string>
+  <string name="sign_up">Sign Up</string>
+  <string name="terms_and_conditions">Terms and Conditions</string>
+  <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+  <string name="password_did_not_match">Password Did Not Match</string>
+  <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
 </resources>

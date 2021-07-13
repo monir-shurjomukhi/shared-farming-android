@@ -7,7 +7,7 @@ import com.pranisheba.sharedfarming.util.AUTH_TOKEN
 
 const val PREFERENCE_TITLE = "SharedFarmingPreference"
 
-class VetPreference(context: Context) {
+class SharedFarmingPreference(context: Context) {
   private val preferences: SharedPreferences =
     context.getSharedPreferences(PREFERENCE_TITLE, Context.MODE_PRIVATE)
   private val editor: SharedPreferences.Editor = preferences.edit()

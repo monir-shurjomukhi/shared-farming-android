@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityFundDetailsBinding
 import com.pranisheba.sharedfarming.model.FundOpportunity
+import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
 import com.squareup.picasso.Picasso
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso
 class FundDetailsActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityFundDetailsBinding
+  private lateinit var preference: SharedFarmingPreference
   private lateinit var fundOpportunity: FundOpportunity
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,7 @@ class FundDetailsActivity : AppCompatActivity() {
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
 
+    preference = SharedFarmingPreference(this)
     fundOpportunity = intent.getParcelableExtra(FUND_OPPORTUNITY)!!
 
     Picasso.get().load(fundOpportunity.image).placeholder(R.mipmap.ic_launcher)
@@ -34,7 +37,11 @@ class FundDetailsActivity : AppCompatActivity() {
   }
 
   fun buyNow(view: View) {
-    startActivity(Intent(this, LoginActivity::class.java))
+    if (preference.getAuthToken()?.isEmpty() == true) {
+      startActivity(Intent(this, LoginActivity::class.java))
+    } else {
+
+    }
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

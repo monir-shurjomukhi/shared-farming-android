@@ -11,14 +11,14 @@ import com.pranisheba.sharedfarming.databinding.ActivityLoginBinding
 import com.pranisheba.sharedfarming.model.UserLogin
 import com.pranisheba.sharedfarming.networking.ApiClient
 import com.pranisheba.sharedfarming.networking.ApiInterface
-import com.pranisheba.sharedfarming.preference.VetPreference
+import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import retrofit2.Call
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityLoginBinding
-  private lateinit var preference: VetPreference
+  private lateinit var preference: SharedFarmingPreference
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
-    preference = VetPreference(this)
+    preference = SharedFarmingPreference(this)
   }
 
   fun login(view: View) {

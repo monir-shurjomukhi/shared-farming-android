@@ -4,8 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityLoginBinding
+import com.pranisheba.sharedfarming.model.UserLogin
+import com.pranisheba.sharedfarming.networking.ApiClient
+import com.pranisheba.sharedfarming.networking.ApiInterface
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,6 +24,34 @@ class LoginActivity : AppCompatActivity() {
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
+  }
+
+  fun login(view: View) {
+    val username = binding.usernameLayout.editText?.text.toString()
+    val password = binding.passwordLayout.editText?.text.toString()
+
+    if (username.isEmpty()) {
+      binding.usernameLayout.error = getString(R.string.phone_number_or_email_required)
+      return
+    }
+    if (password.isEmpty()) {
+      binding.passwordLayout.error = getString(R.string.password_required)
+      return
+    }
+
+    val userLogin = UserLogin(username, password)
+    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
+    apiClient?.userLogin(userLogin)?.enqueue(object : retrofit2.Callback<UserLogin> {
+      override fun onResponse(call: Call<UserLogin>, response: Response<UserLogin>) {
+        Toast.makeText(this@LoginActivity, response.body().toString(), Toast.LENGTH_SHORT)
+          .show()
+      }
+
+      override fun onFailure(call: Call<UserLogin>, t: Throwable) {
+
+      }
+
+    })
   }
 
   fun goToSignUp(view: View) {

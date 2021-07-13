@@ -9,4 +9,9 @@ data class UserLogin(
   var username: String?,
   var password: String?,
   var token: String?
-) : Parcelable
+) : Parcelable {
+  constructor(
+    username: String?,
+    password: String?
+  ) : this(username, password, null)
+}

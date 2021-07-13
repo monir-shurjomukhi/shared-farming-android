@@ -1,6 +1,7 @@
 package com.pranisheba.sharedfarming.networking
 
 import com.pranisheba.sharedfarming.model.FundOpportunity
+import com.pranisheba.sharedfarming.model.UserLogin
 import com.pranisheba.sharedfarming.model.UserSignUp
 import retrofit2.Call
 import retrofit2.http.Body
@@ -21,4 +22,9 @@ interface ApiInterface {
   fun userSignUp(
     @Body userSignUp: UserSignUp
   ): Call<UserSignUp>
+
+  @POST("auth/api-token-auth/")
+  fun userLogin(
+    @Body userLogin: UserLogin
+  ): Call<UserLogin>
 }

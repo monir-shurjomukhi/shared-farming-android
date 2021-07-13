@@ -60,7 +60,8 @@ class SignUpActivity : AppCompatActivity() {
     val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
     apiClient?.userSignUp(userSignUp)?.enqueue(object : retrofit2.Callback<UserSignUp> {
       override fun onResponse(call: Call<UserSignUp>, response: Response<UserSignUp>) {
-        Toast.makeText(this@SignUpActivity, response.body().toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@SignUpActivity, "Sign up successful! Please login", Toast.LENGTH_SHORT)
+          .show()
       }
 
       override fun onFailure(call: Call<UserSignUp>, t: Throwable) {

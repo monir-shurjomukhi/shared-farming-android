@@ -71,6 +71,10 @@ class SignUpActivity : AppCompatActivity() {
     })
   }
 
+  fun goToLogin(view: View) {
+    onBackPressed()
+  }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     // handle arrow click here
     if (item.itemId == android.R.id.home) {

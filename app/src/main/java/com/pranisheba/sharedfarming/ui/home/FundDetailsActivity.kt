@@ -48,6 +48,12 @@ class FundDetailsActivity : AppCompatActivity() {
       .into(binding.fundImageView)
     binding.fundNameTextView.text = fundOpportunity.name
     binding.fundAmountTextView.text = String.format("%.2f/cow", fundOpportunity.amount)
+    binding.breedTextView.text = fundOpportunity.breed?.name
+    binding.genderTextView.text = fundOpportunity.gender
+    binding.weightTextView.text = String.format("%.2f KG", fundOpportunity.average_weight)
+    binding.sourceTextView.text = fundOpportunity.source
+    binding.locationTextView.text = fundOpportunity.location?.name
+    binding.timelineTextView.text = fundOpportunity.growth_timeline
     binding.fundDetailsTextView.text = fundOpportunity.details
 
     binding.unitLayout.setOnKeyListener(null)

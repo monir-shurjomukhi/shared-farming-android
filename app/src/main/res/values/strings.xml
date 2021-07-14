@@ -25,4 +25,10 @@
   <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
   <string name="select_unit">Select Unit</string>
   <string name="unit_required">Unit Required</string>
+  <string name="breed">Breed</string>
+  <string name="gender">Gender</string>
+  <string name="average_weight">Average Weight</string>
+  <string name="sourced_from">Sourced From</string>
+  <string name="location">Location</string>
+  <string name="growth_timeline">Growth Timeline</string>
 </resources>

@@ -10,7 +10,6 @@ import com.pranisheba.sharedfarming.databinding.ActivitySignUpBinding
 import com.pranisheba.sharedfarming.model.UserSignUp
 import com.pranisheba.sharedfarming.networking.ApiClient
 import com.pranisheba.sharedfarming.networking.ApiInterface
-import kotlinx.android.synthetic.main.activity_sign_up.view.*
 import retrofit2.Call
 import retrofit2.Response
 

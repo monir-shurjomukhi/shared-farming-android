@@ -2,9 +2,11 @@ package com.pranisheba.sharedfarming.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pranisheba.sharedfarming.R
@@ -41,9 +43,26 @@ class FundDetailsActivity : AppCompatActivity() {
     binding.fundNameTextView.text = fundOpportunity.name
     binding.fundAmountTextView.text = String.format("%.2f/cow", fundOpportunity.amount)
     binding.fundDetailsTextView.text = fundOpportunity.details
+
+    binding.unitLayout.setOnKeyListener(null)
+    ArrayAdapter(this, android.R.layout.simple_list_item_1, listOf("1", "2", "3", "4"))
+      .also { adapter ->
+        binding.unitTextView.setAdapter(adapter)
+        binding.unitTextView.inputType = InputType.TYPE_NULL
+      }
   }
 
   fun buyNow(view: View) {
+    var unit = 0
+    try {
+      unit = binding.unitLayout.editText?.text.toString().toInt()
+    } catch (e: Exception) {
+      binding.unitLayout.error = getString(R.string.unit_required)
+      return
+    }
+    binding.unitLayout.editText?.text.toString()
+    val amount = unit * fundOpportunity.amount!!
+
     if (preference.getAuthToken()?.isEmpty() == true) {
       startActivity(Intent(this, LoginActivity::class.java))
     } else {
@@ -51,7 +70,7 @@ class FundDetailsActivity : AppCompatActivity() {
         "spaytest",
         "JehPNXF58rXs",
         "NOK" + System.currentTimeMillis(),
-        0.01,
+        amount,
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJzcGF5dGVzdCIsImlhdCI6MTU5ODM2MTI1Nn0.cwkvdTDI6_K430xq7Iqapaknbqjm9J3Th1EiXePIEcY"
       )
       ShurjoPaySDK.getInstance().makePayment(

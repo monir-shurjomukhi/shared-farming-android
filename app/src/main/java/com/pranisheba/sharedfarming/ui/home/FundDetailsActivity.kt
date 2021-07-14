@@ -2,8 +2,10 @@ package com.pranisheba.sharedfarming.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityFundDetailsBinding
@@ -11,6 +13,11 @@ import com.pranisheba.sharedfarming.model.FundOpportunity
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
+import com.sm.shurjopaysdk.listener.PaymentResultListener
+import com.sm.shurjopaysdk.model.RequiredDataModel
+import com.sm.shurjopaysdk.model.TransactionInfo
+import com.sm.shurjopaysdk.payment.ShurjoPaySDK
+import com.sm.shurjopaysdk.utils.SPayConstants
 import com.squareup.picasso.Picasso
 
 class FundDetailsActivity : AppCompatActivity() {
@@ -40,7 +47,29 @@ class FundDetailsActivity : AppCompatActivity() {
     if (preference.getAuthToken()?.isEmpty() == true) {
       startActivity(Intent(this, LoginActivity::class.java))
     } else {
+      val dataModel = RequiredDataModel(
+        "spaytest",
+        "JehPNXF58rXs",
+        "NOK" + System.currentTimeMillis(),
+        0.01,
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJzcGF5dGVzdCIsImlhdCI6MTU5ODM2MTI1Nn0.cwkvdTDI6_K430xq7Iqapaknbqjm9J3Th1EiXePIEcY"
+      )
+      ShurjoPaySDK.getInstance().makePayment(
+        this,
+        SPayConstants.SdkType.TEST,
+        dataModel,
+        object : PaymentResultListener {
+          override fun onSuccess(t: TransactionInfo?) {
+            Log.d(TAG, "onSuccess: $t")
+            Toast.makeText(this@FundDetailsActivity, t.toString(), Toast.LENGTH_SHORT).show()
+          }
 
+          override fun onFailed(e: String?) {
+            Log.e(TAG, "onFailed: $e")
+          }
+
+        }
+      )
     }
   }
 
@@ -50,5 +79,9 @@ class FundDetailsActivity : AppCompatActivity() {
       onBackPressed()
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  companion object {
+    private const val TAG = "FundDetailsActivity"
   }
 }

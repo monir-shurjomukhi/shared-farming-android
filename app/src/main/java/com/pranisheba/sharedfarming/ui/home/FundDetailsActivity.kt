@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityFundDetailsBinding
 import com.pranisheba.sharedfarming.model.FundOpportunity
+import com.pranisheba.sharedfarming.model.PaymentCheckout
+import com.pranisheba.sharedfarming.networking.ApiClient
+import com.pranisheba.sharedfarming.networking.ApiInterface
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
@@ -21,6 +24,9 @@ import com.sm.shurjopaysdk.model.TransactionInfo
 import com.sm.shurjopaysdk.payment.ShurjoPaySDK
 import com.sm.shurjopaysdk.utils.SPayConstants
 import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FundDetailsActivity : AppCompatActivity() {
 
@@ -81,15 +87,44 @@ class FundDetailsActivity : AppCompatActivity() {
           override fun onSuccess(t: TransactionInfo?) {
             Log.d(TAG, "onSuccess: $t")
             Toast.makeText(this@FundDetailsActivity, t.toString(), Toast.LENGTH_SHORT).show()
+            if (t != null) {
+              confirmPayment(unit, t)
+            }
           }
 
           override fun onFailed(e: String?) {
             Log.e(TAG, "onFailed: $e")
           }
-
         }
       )
     }
+  }
+
+  fun confirmPayment(unit: Int, tInfo: TransactionInfo) {
+    val paymentCheckout = PaymentCheckout(
+      tInfo.txID,
+      tInfo.bankTxID,
+      tInfo.bankTxStatus,
+      tInfo.txnAmount.toString(),
+      tInfo.spCode,
+      tInfo.spCode,
+      "shurjopay",
+      fundOpportunity.id.toString(),
+      unit.toString()
+    )
+
+    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
+    apiClient?.checkout("Token " + preference.getAuthToken(), paymentCheckout)
+      ?.enqueue(object : Callback<PaymentCheckout> {
+        override fun onResponse(call: Call<PaymentCheckout>, response: Response<PaymentCheckout>) {
+          Log.d(TAG, "onResponse: ${response.body().toString()}")
+          Toast.makeText(this@FundDetailsActivity, "Fund Successful!", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onFailure(call: Call<PaymentCheckout>, t: Throwable) {
+          Log.e(TAG, "onFailure: $t", t)
+        }
+      })
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

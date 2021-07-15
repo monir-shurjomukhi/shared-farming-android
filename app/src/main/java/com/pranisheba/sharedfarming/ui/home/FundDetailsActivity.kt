@@ -65,7 +65,7 @@ class FundDetailsActivity : AppCompatActivity() {
   }
 
   fun buyNow(view: View) {
-    var unit = 0
+    val unit: Int
     try {
       unit = binding.unitLayout.editText?.text.toString().toInt()
     } catch (e: Exception) {
@@ -100,6 +100,7 @@ class FundDetailsActivity : AppCompatActivity() {
 
           override fun onFailed(e: String?) {
             Log.e(TAG, "onFailed: $e")
+            Toast.makeText(this@FundDetailsActivity, e, Toast.LENGTH_SHORT).show()
           }
         }
       )

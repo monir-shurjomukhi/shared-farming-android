@@ -2,6 +2,7 @@
   <string name="app_name">SharedFarming</string>
   <string name="title_home">Home</string>
   <string name="title_dashboard">Dashboard</string>
+  <string name="title_my_farms">My Farms</string>
   <string name="title_notifications">Notifications</string>
   <string name="fund_opportunities">Fund Opportunities</string>
   <string name="buy_now">Buy Now</string>

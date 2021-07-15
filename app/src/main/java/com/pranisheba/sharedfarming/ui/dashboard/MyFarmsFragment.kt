@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.pranisheba.sharedfarming.databinding.FragmentDashboardBinding
+import com.pranisheba.sharedfarming.databinding.FragmentMyFarmsBinding
 
-class DashboardFragment : Fragment() {
+class MyFarmsFragment : Fragment() {
 
-  private lateinit var dashboardViewModel: DashboardViewModel
-  private var _binding: FragmentDashboardBinding? = null
+  private lateinit var myFarmsViewModel: MyFarmsViewModel
+  private var _binding: FragmentMyFarmsBinding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -23,15 +23,15 @@ class DashboardFragment : Fragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
-    dashboardViewModel =
-      ViewModelProvider(this).get(DashboardViewModel::class.java)
+  ): View {
+    myFarmsViewModel =
+      ViewModelProvider(this).get(MyFarmsViewModel::class.java)
 
-    _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+    _binding = FragmentMyFarmsBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
     val textView: TextView = binding.textDashboard
-    dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+    myFarmsViewModel.text.observe(viewLifecycleOwner, Observer {
       textView.text = it
     })
     return root

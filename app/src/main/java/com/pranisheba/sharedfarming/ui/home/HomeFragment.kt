@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         fundOpportunities = it
 
         //setting adapter to recycler
-        binding.recyclerView.adapter = HorizontalAdapter(it, ::onFundItemClick)
+        binding.recyclerView.adapter = FundAdapter(it, ::onFundItemClick)
       }
     })
 

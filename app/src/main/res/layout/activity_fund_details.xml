@@ -57,136 +57,136 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:background="@color/black"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="1dp"
+            android:background="@color/black"
+            android:orientation="vertical"
             android:paddingStart="1dp"
-            android:paddingBottom="1dp"
-            android:orientation="vertical">
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp">
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/breed" />
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/breed"
+              android:textSize="16sp" />
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
               android:layout_marginTop="1dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/gender" />
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/gender"
+              android:textSize="16sp" />
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/average_weight" />
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/average_weight"
+              android:textSize="16sp" />
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/sourced_from" />
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/sourced_from"
+              android:textSize="16sp" />
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/location" />
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/location"
+              android:textSize="16sp" />
 
           <TextView
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/growth_timeline" />
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:text="@string/growth_timeline"
+              android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="1dp"
+            android:background="@color/black"
+            android:orientation="vertical"
             android:paddingStart="1dp"
+            android:paddingTop="1dp"
             android:paddingEnd="1dp"
-            android:paddingBottom="1dp"
-            android:orientation="vertical">
+            android:paddingBottom="1dp">
 
           <TextView
               android:id="@+id/breedTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/breed" />
 
           <TextView
               android:id="@+id/genderTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/gender" />
 
           <TextView
               android:id="@+id/weightTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/average_weight" />
 
           <TextView
               android:id="@+id/sourceTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/sourced_from" />
 
           <TextView
               android:id="@+id/locationTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/location" />
 
           <TextView
               android:id="@+id/timelineTextView"
-              android:background="@color/white"
-              android:textSize="16sp"
-              android:padding="8dp"
-              android:layout_marginTop="1dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="1dp"
+              android:background="@color/white"
+              android:padding="8dp"
+              android:textSize="16sp"
               tools:text="@string/growth_timeline" />
         </LinearLayout>
       </LinearLayout>

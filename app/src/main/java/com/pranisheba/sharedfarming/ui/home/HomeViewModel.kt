@@ -11,10 +11,6 @@ import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
 
-  private val _text = MutableLiveData<String>()
-  val text: LiveData<String>
-    get() = _text
-
   private val _fundOpportunities = MutableLiveData<List<FundOpportunity>>()
   val fundOpportunities: LiveData<List<FundOpportunity>>
     get() = _fundOpportunities

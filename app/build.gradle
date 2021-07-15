@@ -21,11 +21,13 @@ android {
   buildTypes {
     release {
       minifyEnabled false
-      buildConfigField("String", "BASE_URL", "\"http://159.203.64.72:8080/en/api/v1/\"")
+      //buildConfigField("String", "BASE_URL", "\"http://159.203.64.72:8080/en/api/v1/\"") // Live
+      buildConfigField("String", "BASE_URL", "\"http://192.168.0.82:8000/en/api/v1/\"") // Tareq-PC
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
     debug {
-      buildConfigField("String", "BASE_URL", "\"http://159.203.64.72:8080/en/api/v1/\"")
+      //buildConfigField("String", "BASE_URL", "\"http://159.203.64.72:8080/en/api/v1/\"") // Live
+      buildConfigField("String", "BASE_URL", "\"http://192.168.0.82:8000/en/api/v1/\"") // Tareq-PC
     }
   }
   compileOptions {

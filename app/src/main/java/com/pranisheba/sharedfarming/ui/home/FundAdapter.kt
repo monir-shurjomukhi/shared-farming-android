@@ -11,11 +11,11 @@ import com.pranisheba.sharedfarming.model.FundOpportunity
 import com.squareup.picasso.Picasso
 
 
-class HorizontalAdapter(
+class FundAdapter(
   private val list: List<FundOpportunity>,
   private val onItemClicked: (position: Int) -> Unit
 ) :
-  RecyclerView.Adapter<HorizontalAdapter.MyViewHolder>() {
+  RecyclerView.Adapter<FundAdapter.MyViewHolder>() {
 
   class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit) :
     RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -37,7 +37,7 @@ class HorizontalAdapter(
     val itemView: View = LayoutInflater
       .from(parent.context)
       .inflate(
-        R.layout.recycler_item,
+        R.layout.recycler_item_fund,
         parent,
         false
       )
@@ -45,12 +45,12 @@ class HorizontalAdapter(
   }
 
   override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-    val listData = list[position].image
+    val listData = list[position]
 
     //Loading Image into view
-    Picasso.get().load(listData).placeholder(R.mipmap.ic_launcher).into(holder.image)
-    holder.name.text = list[position].name
-    holder.price.text = String.format("%.2f/cow", list[position].amount)
+    Picasso.get().load(listData.image).placeholder(R.mipmap.ic_launcher).into(holder.image)
+    holder.name.text = listData.name
+    holder.price.text = String.format("%.2f/cow", listData.amount)
   }
 
   override fun getItemCount(): Int {

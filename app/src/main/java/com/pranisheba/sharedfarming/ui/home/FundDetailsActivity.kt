@@ -17,6 +17,7 @@ import com.pranisheba.sharedfarming.networking.ApiClient
 import com.pranisheba.sharedfarming.networking.ApiInterface
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
+import com.pranisheba.sharedfarming.ui.base.MainActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
 import com.sm.shurjopaysdk.listener.PaymentResultListener
 import com.sm.shurjopaysdk.model.RequiredDataModel
@@ -125,7 +126,13 @@ class FundDetailsActivity : AppCompatActivity() {
       ?.enqueue(object : Callback<PaymentCheckout> {
         override fun onResponse(call: Call<PaymentCheckout>, response: Response<PaymentCheckout>) {
           Log.d(TAG, "onResponse: ${response.body().toString()}")
-          Toast.makeText(this@FundDetailsActivity, "Fund Successful!", Toast.LENGTH_SHORT).show()
+          Toast.makeText(
+            this@FundDetailsActivity,
+            "Congratulations! Your Fund is Successful!",
+            Toast.LENGTH_SHORT
+          ).show()
+          startActivity(Intent(this@FundDetailsActivity, MainActivity::class.java))
+          finishAffinity()
         }
 
         override fun onFailure(call: Call<PaymentCheckout>, t: Throwable) {

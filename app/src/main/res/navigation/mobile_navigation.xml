@@ -13,7 +13,7 @@
 
   <fragment
       android:id="@+id/navigation_my_farms"
-      android:name="com.pranisheba.sharedfarming.ui.dashboard.MyFarmsFragment"
+      android:name="com.pranisheba.sharedfarming.ui.myfarms.MyFarmsFragment"
       android:label="@string/title_my_farms"
       tools:layout="@layout/fragment_my_farms" />
 

@@ -1,9 +1,6 @@
 package com.pranisheba.sharedfarming.networking
 
-import com.pranisheba.sharedfarming.model.FundOpportunity
-import com.pranisheba.sharedfarming.model.PaymentCheckout
-import com.pranisheba.sharedfarming.model.UserLogin
-import com.pranisheba.sharedfarming.model.UserSignUp
+import com.pranisheba.sharedfarming.model.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,6 +14,11 @@ interface ApiInterface {
 
   @GET("sharedfarm/fund_opportunities/")
   fun getFundOpportunities(): Call<List<FundOpportunity>>
+
+  @GET("sharedfarm/invoice/")
+  fun getInvoices(
+    @Header("Authorization") token: String
+  ): Call<List<Invoice>>
 
   //////////////////////  POST  /////////////////////////
 

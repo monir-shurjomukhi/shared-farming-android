@@ -63,9 +63,13 @@ class FundDetailsActivity : AppCompatActivity() {
         binding.unitTextView.setAdapter(adapter)
         binding.unitTextView.inputType = InputType.TYPE_NULL
       }
+
+    binding.buyNowButton.setOnClickListener {
+      buyNow()
+    }
   }
 
-  fun buyNow(view: View) {
+  fun buyNow() {
     val unit: Int
     try {
       unit = binding.unitLayout.editText?.text.toString().toInt()

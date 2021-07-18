@@ -27,9 +27,17 @@ class LoginActivity : AppCompatActivity() {
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
     preference = SharedFarmingPreference(this)
+
+    binding.loginButton.setOnClickListener {
+      login()
+    }
+
+    binding.signUpTextView.setOnClickListener {
+      goToSignUp()
+    }
   }
 
-  fun login(view: View) {
+  fun login() {
     val username = binding.usernameLayout.editText?.text.toString()
     val password = binding.passwordLayout.editText?.text.toString()
 
@@ -60,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
     })
   }
 
-  fun goToSignUp(view: View) {
+  fun goToSignUp() {
     startActivity(Intent(this, SignUpActivity::class.java))
   }
 

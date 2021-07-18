@@ -23,9 +23,17 @@ class SignUpActivity : AppCompatActivity() {
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
+
+    binding.signUpButton.setOnClickListener {
+      signUp()
+    }
+
+    binding.loginTextView.setOnClickListener {
+      goToLogin()
+    }
   }
 
-  fun signUp(view: View) {
+  fun signUp() {
     val phone = binding.phoneLayout.editText?.text.toString()
     val email = binding.emailLayout.editText?.text.toString()
     val password = binding.passwordLayout.editText?.text.toString()
@@ -70,7 +78,7 @@ class SignUpActivity : AppCompatActivity() {
     })
   }
 
-  fun goToLogin(view: View) {
+  fun goToLogin() {
     onBackPressed()
   }
 

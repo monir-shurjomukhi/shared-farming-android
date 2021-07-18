@@ -1,5 +1,6 @@
 package com.pranisheba.sharedfarming.ui.myfarms
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pranisheba.sharedfarming.databinding.FragmentMyFarmsBinding
 import com.pranisheba.sharedfarming.model.Invoice
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
+import com.pranisheba.sharedfarming.ui.base.LoginActivity
 
 class MyFarmsFragment : Fragment() {
 
@@ -38,20 +40,25 @@ class MyFarmsFragment : Fragment() {
 
     preference = SharedFarmingPreference(requireContext())
 
-    myFarmsViewModel.invoices.observe(viewLifecycleOwner, Observer {
-      binding.recyclerView.layoutManager =
-        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    if (preference.getAuthToken()?.isEmpty() == true) {
+      Toast.makeText(context, "Login to view your funds", Toast.LENGTH_SHORT).show()
+      startActivity(Intent(context, LoginActivity::class.java))
+    } else {
+      myFarmsViewModel.invoices.observe(viewLifecycleOwner, Observer {
+        binding.recyclerView.layoutManager =
+          LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-      it.let {
-        if (it.isNotEmpty()) {
-          invoices = it
-          //setting adapter to recycler
-          binding.recyclerView.adapter = FarmAdapter(it, ::onFarmItemClick)
-        } else {
-          Toast.makeText(context, "No Farms Found!", Toast.LENGTH_SHORT).show()
+        if (it != null) {
+          if (it.isNotEmpty()) {
+            invoices = it
+            //setting adapter to recycler
+            binding.recyclerView.adapter = FarmAdapter(it, ::onFarmItemClick)
+          } else {
+            Toast.makeText(context, "No Farms Found!", Toast.LENGTH_SHORT).show()
+          }
         }
-      }
-    })
+      })
+    }
 
     myFarmsViewModel.getInvoices("Token " + preference.getAuthToken())
 

@@ -226,7 +226,6 @@
           android:layout_gravity="center_horizontal"
           android:layout_marginTop="8dp"
           android:layout_marginBottom="@dimen/activity_vertical_margin"
-          android:onClick="buyNow"
           android:text="@string/buy_now" />
     </LinearLayout>
   </ScrollView>

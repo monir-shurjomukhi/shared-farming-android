@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.model.Invoice
@@ -20,14 +21,15 @@ class FarmAdapter(
   class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit) :
     RecyclerView.ViewHolder(view), View.OnClickListener {
 
-    init {
-      view.setOnClickListener(this)
-    }
+    private val farmCard: CardView = view.findViewById(R.id.farmCardView)
+    val image: ImageView = view.findViewById(R.id.image)
+    val name: TextView = view.findViewById(R.id.name)
+    val price: TextView = view.findViewById(R.id.price)
+    val unit: TextView = view.findViewById(R.id.unit)
 
-    var image: ImageView = view.findViewById(R.id.image)
-    var name: TextView = view.findViewById(R.id.name)
-    var price: TextView = view.findViewById(R.id.price)
-    var unit: TextView = view.findViewById(R.id.unit)
+    init {
+      farmCard.setOnClickListener(this)
+    }
 
     override fun onClick(v: View?) {
       onItemClicked(adapterPosition)
@@ -49,7 +51,8 @@ class FarmAdapter(
     val listData = list[position]
 
     //Loading Image into view
-    Picasso.get().load(listData.product?.image).placeholder(R.mipmap.ic_launcher).into(holder.image)
+    Picasso.get().load(listData.product?.image).placeholder(R.drawable.ic_baseline_image_24)
+      .error(R.drawable.ic_baseline_broken_image_24).into(holder.image)
     holder.name.text = listData.product?.name
     holder.price.text = String.format("Amount: %s", listData.amount)
     holder.unit.text = String.format("Unit: %d", listData.unit)

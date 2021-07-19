@@ -6,6 +6,7 @@
   android:layout_height="wrap_content">
 
   <androidx.cardview.widget.CardView
+    android:id="@+id/farmCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -25,7 +26,7 @@
         android:layout_height="120dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_baseline_image_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +38,7 @@
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toTopOf="parent"
@@ -50,6 +52,7 @@
         android:layout_marginTop="8dp"
         android:gravity="start"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="Price" />
@@ -62,6 +65,7 @@
         android:layout_marginTop="8dp"
         android:gravity="start"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toBottomOf="@id/price"
         tools:text="Unit" />

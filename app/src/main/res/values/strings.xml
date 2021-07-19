@@ -37,5 +37,6 @@
   <string name="blog">Blog</string>
   <string name="about_us">About Us</string>
   <string name="log_in">Log In</string>
+  <string name="log_out">Log Out</string>
   <string name="news">News</string>
 </resources>

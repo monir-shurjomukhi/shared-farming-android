@@ -12,7 +12,7 @@ class SharedFarmingPreference(context: Context) {
     context.getSharedPreferences(PREFERENCE_TITLE, Context.MODE_PRIVATE)
   private val editor: SharedPreferences.Editor = preferences.edit()
 
-  fun putAuthToken(token: String) {
+  fun putAuthToken(token: String?) {
     editor.putString(AUTH_TOKEN, token)
     editor.apply()
   }

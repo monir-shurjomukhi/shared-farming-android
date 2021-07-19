@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -45,8 +44,8 @@ class FundDetailsActivity : AppCompatActivity() {
     preference = SharedFarmingPreference(this)
     fundOpportunity = intent.getParcelableExtra(FUND_OPPORTUNITY)!!
 
-    Picasso.get().load(fundOpportunity.image).placeholder(R.mipmap.ic_launcher)
-      .into(binding.fundImageView)
+    Picasso.get().load(fundOpportunity.image).placeholder(R.drawable.ic_baseline_image_24)
+      .error(R.drawable.ic_baseline_broken_image_24).into(binding.fundImageView)
     binding.fundNameTextView.text = fundOpportunity.name
     binding.fundAmountTextView.text = String.format("%.2f/cow", fundOpportunity.amount)
     binding.breedTextView.text = fundOpportunity.breed?.name

@@ -48,7 +48,8 @@ class FundAdapter(
     val listData = list[position]
 
     //Loading Image into view
-    Picasso.get().load(listData.image).placeholder(R.mipmap.ic_launcher).into(holder.image)
+    Picasso.get().load(listData.image).placeholder(R.drawable.ic_baseline_image_24)
+      .error(R.drawable.ic_baseline_broken_image_24).into(holder.image)
     holder.name.text = listData.name
     holder.price.text = String.format("%.2f/cow", listData.amount)
   }

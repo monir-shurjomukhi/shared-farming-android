@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.model.FundOpportunity
@@ -20,13 +21,14 @@ class FundAdapter(
   class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit) :
     RecyclerView.ViewHolder(view), View.OnClickListener {
 
-    init {
-      view.setOnClickListener(this)
-    }
+    private val fundCard: CardView = view.findViewById(R.id.fundCardView)
+    val image: ImageView = view.findViewById(R.id.image)
+    val name: TextView = view.findViewById(R.id.name)
+    val price: TextView = view.findViewById(R.id.price)
 
-    var image: ImageView = view.findViewById(R.id.image)
-    var name: TextView = view.findViewById(R.id.name)
-    var price: TextView = view.findViewById(R.id.price)
+    init {
+      fundCard.setOnClickListener(this)
+    }
 
     override fun onClick(v: View?) {
       onItemClicked(adapterPosition)

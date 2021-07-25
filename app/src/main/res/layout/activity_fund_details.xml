@@ -30,7 +30,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/fund_opportunities"
         android:scaleType="centerCrop"
-        tools:src="@mipmap/ic_launcher" />
+        tools:src="@drawable/ic_baseline_image_24" />
 
       <TextView
         android:id="@+id/fundNameTextView"

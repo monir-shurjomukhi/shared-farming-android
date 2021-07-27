@@ -3,33 +3,24 @@ package com.pranisheba.sharedfarming.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityFundDetailsBinding
 import com.pranisheba.sharedfarming.model.FundOpportunity
-import com.pranisheba.sharedfarming.model.PaymentCheckout
-import com.pranisheba.sharedfarming.networking.ApiClient
-import com.pranisheba.sharedfarming.networking.ApiInterface
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
 import com.pranisheba.sharedfarming.ui.base.MainActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
-import com.sm.shurjopaysdk.listener.PaymentResultListener
-import com.sm.shurjopaysdk.model.RequiredDataModel
-import com.sm.shurjopaysdk.model.TransactionInfo
-import com.sm.shurjopaysdk.payment.ShurjoPaySDK
-import com.sm.shurjopaysdk.utils.SPayConstants
 import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FundDetailsActivity : AppCompatActivity() {
 
+  private lateinit var fundDetailsViewModel: FundDetailsViewModel
   private lateinit var binding: ActivityFundDetailsBinding
   private lateinit var preference: SharedFarmingPreference
   private lateinit var fundOpportunity: FundOpportunity
@@ -37,6 +28,7 @@ class FundDetailsActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityFundDetailsBinding.inflate(layoutInflater)
+    fundDetailsViewModel = ViewModelProvider(this).get(FundDetailsViewModel::class.java)
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -66,9 +58,19 @@ class FundDetailsActivity : AppCompatActivity() {
     binding.buyNowButton.setOnClickListener {
       buyNow()
     }
+
+    fundDetailsViewModel.paymentCheckout.observe(this, Observer {
+      Toast.makeText(
+        this,
+        "Congratulations! Your Fund is Successful!",
+        Toast.LENGTH_SHORT
+      ).show()
+      startActivity(Intent(this, MainActivity::class.java))
+      finishAffinity()
+    })
   }
 
-  fun buyNow() {
+  private fun buyNow() {
     val unit: Int
     try {
       unit = binding.unitLayout.editText?.text.toString().toInt()
@@ -76,72 +78,13 @@ class FundDetailsActivity : AppCompatActivity() {
       binding.unitLayout.error = getString(R.string.unit_required)
       return
     }
-    binding.unitLayout.editText?.text.toString()
-    val amount = unit * fundOpportunity.amount!!
 
     if (preference.getAuthToken()?.isEmpty() == true) {
       startActivity(Intent(this, LoginActivity::class.java))
     } else {
-      val dataModel = RequiredDataModel(
-        "spaytest",
-        "JehPNXF58rXs",
-        "NOK" + System.currentTimeMillis(),
-        amount,
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJzcGF5dGVzdCIsImlhdCI6MTU5ODM2MTI1Nn0.cwkvdTDI6_K430xq7Iqapaknbqjm9J3Th1EiXePIEcY"
-      )
-      ShurjoPaySDK.getInstance().makePayment(
-        this,
-        SPayConstants.SdkType.TEST,
-        dataModel,
-        object : PaymentResultListener {
-          override fun onSuccess(t: TransactionInfo?) {
-            Log.d(TAG, "onSuccess: $t")
-            Toast.makeText(this@FundDetailsActivity, t.toString(), Toast.LENGTH_SHORT).show()
-            if (t != null) {
-              confirmPayment(unit, t)
-            }
-          }
-
-          override fun onFailed(e: String?) {
-            Log.e(TAG, "onFailed: $e")
-            Toast.makeText(this@FundDetailsActivity, e, Toast.LENGTH_SHORT).show()
-          }
-        }
-      )
+      val token = "Token " + preference.getAuthToken()
+      fundDetailsViewModel.buy(this, unit, fundOpportunity, token)
     }
-  }
-
-  fun confirmPayment(unit: Int, tInfo: TransactionInfo) {
-    val paymentCheckout = PaymentCheckout(
-      tInfo.txID,
-      tInfo.bankTxID,
-      tInfo.bankTxStatus,
-      tInfo.txnAmount.toString(),
-      tInfo.spCode,
-      tInfo.spCode,
-      "shurjopay",
-      fundOpportunity.id.toString(),
-      unit.toString()
-    )
-
-    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
-    apiClient?.checkout("Token " + preference.getAuthToken(), paymentCheckout)
-      ?.enqueue(object : Callback<PaymentCheckout> {
-        override fun onResponse(call: Call<PaymentCheckout>, response: Response<PaymentCheckout>) {
-          Log.d(TAG, "onResponse: ${response.body().toString()}")
-          Toast.makeText(
-            this@FundDetailsActivity,
-            "Congratulations! Your Fund is Successful!",
-            Toast.LENGTH_SHORT
-          ).show()
-          startActivity(Intent(this@FundDetailsActivity, MainActivity::class.java))
-          finishAffinity()
-        }
-
-        override fun onFailure(call: Call<PaymentCheckout>, t: Throwable) {
-          Log.e(TAG, "onFailure: $t", t)
-        }
-      })
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -153,6 +96,6 @@ class FundDetailsActivity : AppCompatActivity() {
   }
 
   companion object {
-    private const val TAG = "FundDetailsActivity"
+    const val TAG = "FundDetailsActivity"
   }
 }

@@ -58,6 +58,14 @@ class MyFarmsFragment : Fragment() {
           }
         }
       })
+
+      myFarmsViewModel.progress.observe(viewLifecycleOwner, {
+        if (it) {
+          binding.animationView.visibility = View.VISIBLE
+        } else {
+          binding.animationView.visibility = View.GONE
+        }
+      })
     }
 
     myFarmsViewModel.getInvoices("Token " + preference.getAuthToken())
@@ -75,5 +83,9 @@ class MyFarmsFragment : Fragment() {
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
+  }
+
+  companion object {
+    const val TAG = "MyFarmsFragment"
   }
 }

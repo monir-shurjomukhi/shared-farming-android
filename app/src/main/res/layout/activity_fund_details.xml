@@ -230,4 +230,19 @@
         android:text="@string/buy_now" />
     </LinearLayout>
   </ScrollView>
+
+  <com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/animationView"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:visibility="gone"
+    tools:visibility="visible"
+    android:elevation="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:lottie_autoPlay="true"
+    app:lottie_loop="true"
+    app:lottie_rawRes="@raw/liquid_blobby_loader" />
 </androidx.constraintlayout.widget.ConstraintLayout>

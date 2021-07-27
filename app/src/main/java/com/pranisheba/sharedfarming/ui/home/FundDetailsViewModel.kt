@@ -22,6 +22,10 @@ import retrofit2.Response
 
 class FundDetailsViewModel : ViewModel() {
 
+  private val _progress = MutableLiveData<Boolean>()
+  val progress: LiveData<Boolean>
+    get() = _progress
+
   private val _paymentCheckout = MutableLiveData<PaymentCheckout>()
   val paymentCheckout: LiveData<PaymentCheckout>
     get() = _paymentCheckout
@@ -63,6 +67,8 @@ class FundDetailsViewModel : ViewModel() {
     fundOpportunity: FundOpportunity,
     token: String
   ) {
+    _progress.value = true
+
     val paymentCheckout = PaymentCheckout(
       tInfo.txID,
       tInfo.bankTxID,
@@ -84,10 +90,12 @@ class FundDetailsViewModel : ViewModel() {
           if (response.isSuccessful) {
             _paymentCheckout.value = response.body()
           }
+          _progress.value = false
         }
 
         override fun onFailure(call: Call<PaymentCheckout>, t: Throwable) {
           Log.e(FundDetailsActivity.TAG, "onFailure: $t", t)
+          _progress.value = false
         }
       })
   }

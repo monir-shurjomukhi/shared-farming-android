@@ -106,4 +106,7 @@ dependencies {
 
   // ShurjoPay
   implementation files('../libs/shurjopaysdk-1.1x.aar')
+
+  // Lottie
+  implementation 'com.airbnb.android:lottie:3.7.2'
 }

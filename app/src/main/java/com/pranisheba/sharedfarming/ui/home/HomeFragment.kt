@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pranisheba.sharedfarming.databinding.FragmentHomeBinding
@@ -36,7 +35,7 @@ class HomeFragment : Fragment() {
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    homeViewModel.fundOpportunities.observe(viewLifecycleOwner, Observer {
+    homeViewModel.fundOpportunities.observe(viewLifecycleOwner, {
       //setting recycler to horizontal scroll
       binding.recyclerView.layoutManager =
         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -46,6 +45,14 @@ class HomeFragment : Fragment() {
 
         //setting adapter to recycler
         binding.recyclerView.adapter = FundAdapter(it, ::onFundItemClick)
+      }
+    })
+
+    homeViewModel.progress.observe(viewLifecycleOwner, {
+      if (it) {
+        binding.animationView.visibility = View.VISIBLE
+      } else {
+        binding.animationView.visibility = View.GONE
       }
     })
 
@@ -64,5 +71,9 @@ class HomeFragment : Fragment() {
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
+  }
+
+  companion object {
+    const val TAG = "HomeFragment"
   }
 }

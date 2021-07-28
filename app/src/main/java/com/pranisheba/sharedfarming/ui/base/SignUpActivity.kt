@@ -5,21 +5,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivitySignUpBinding
 import com.pranisheba.sharedfarming.model.UserSignUp
-import com.pranisheba.sharedfarming.networking.ApiClient
-import com.pranisheba.sharedfarming.networking.ApiInterface
-import retrofit2.Call
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivitySignUpBinding
+  private lateinit var signUpViewModel: SignUpViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivitySignUpBinding.inflate(layoutInflater)
+    signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -31,9 +30,23 @@ class SignUpActivity : AppCompatActivity() {
     binding.loginTextView.setOnClickListener {
       goToLogin()
     }
+
+    signUpViewModel.userSignUp.observe(this, {
+      if (it != null) {
+        Toast.makeText(this, "Signup successful. Please Login.", Toast.LENGTH_SHORT).show()
+      }
+    })
+
+    signUpViewModel.progress.observe(this, {
+      if (it) {
+        binding.animationView.visibility = View.VISIBLE
+      } else {
+        binding.animationView.visibility = View.GONE
+      }
+    })
   }
 
-  fun signUp() {
+  private fun signUp() {
     val phone = binding.phoneLayout.editText?.text.toString()
     val email = binding.emailLayout.editText?.text.toString()
     val password = binding.passwordLayout.editText?.text.toString()
@@ -64,21 +77,10 @@ class SignUpActivity : AppCompatActivity() {
 
     val userSignUp = UserSignUp(phone, password, is_investor = true, is_agreed = true)
     if (email.isNotEmpty()) userSignUp.email = email
-    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
-    apiClient?.userSignUp(userSignUp)?.enqueue(object : retrofit2.Callback<UserSignUp> {
-      override fun onResponse(call: Call<UserSignUp>, response: Response<UserSignUp>) {
-        Toast.makeText(this@SignUpActivity, "Sign up successful! Please login", Toast.LENGTH_SHORT)
-          .show()
-      }
-
-      override fun onFailure(call: Call<UserSignUp>, t: Throwable) {
-
-      }
-
-    })
+    signUpViewModel.signUp(userSignUp)
   }
 
-  fun goToLogin() {
+  private fun goToLogin() {
     onBackPressed()
   }
 
@@ -88,5 +90,9 @@ class SignUpActivity : AppCompatActivity() {
       onBackPressed()
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  companion object {
+    const val TAG = "SignUpActivity"
   }
 }

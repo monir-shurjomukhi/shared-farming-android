@@ -4,25 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityLoginBinding
 import com.pranisheba.sharedfarming.model.UserLogin
-import com.pranisheba.sharedfarming.networking.ApiClient
-import com.pranisheba.sharedfarming.networking.ApiInterface
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
-import retrofit2.Call
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityLoginBinding
+  private lateinit var loginViewModel: LoginViewModel
   private lateinit var preference: SharedFarmingPreference
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
+    loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -35,9 +33,25 @@ class LoginActivity : AppCompatActivity() {
     binding.signUpTextView.setOnClickListener {
       goToSignUp()
     }
+
+    loginViewModel.userLogin.observe(this, {
+      if (it != null) {
+        preference.putAuthToken(it.token.toString())
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+      }
+    })
+
+    loginViewModel.progress.observe(this, {
+      if (it) {
+        binding.animationView.visibility = View.VISIBLE
+      } else {
+        binding.animationView.visibility = View.GONE
+      }
+    })
   }
 
-  fun login() {
+  private fun login() {
     val username = binding.usernameLayout.editText?.text.toString()
     val password = binding.passwordLayout.editText?.text.toString()
 
@@ -51,24 +65,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     val userLogin = UserLogin(username, password)
-    val apiClient = ApiClient().getApiClient()?.create(ApiInterface::class.java)
-    apiClient?.userLogin(userLogin)?.enqueue(object : retrofit2.Callback<UserLogin> {
-      override fun onResponse(call: Call<UserLogin>, response: Response<UserLogin>) {
-        Toast.makeText(this@LoginActivity, response.body().toString(), Toast.LENGTH_SHORT)
-          .show()
-        preference.putAuthToken(response.body()?.token.toString())
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-        finishAffinity()
-      }
-
-      override fun onFailure(call: Call<UserLogin>, t: Throwable) {
-
-      }
-
-    })
+    loginViewModel.login(userLogin)
   }
 
-  fun goToSignUp() {
+  private fun goToSignUp() {
     startActivity(Intent(this, SignUpActivity::class.java))
   }
 
@@ -78,5 +78,9 @@ class LoginActivity : AppCompatActivity() {
       onBackPressed()
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  companion object {
+    const val TAG = "LoginActivity"
   }
 }

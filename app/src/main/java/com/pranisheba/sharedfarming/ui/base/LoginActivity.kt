@@ -20,10 +20,11 @@ class LoginActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
-    loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     setContentView(binding.root)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.setDisplayShowHomeEnabled(true)
+
+    loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     preference = SharedFarmingPreference(this)
 
     binding.loginButton.setOnClickListener {

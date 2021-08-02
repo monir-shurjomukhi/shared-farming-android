@@ -39,4 +39,8 @@
   <string name="log_in">Log In</string>
   <string name="log_out">Log Out</string>
   <string name="news">News</string>
+  <string name="personal_details">Personal Details</string>
+  <string name="banking_details">Banking Details</string>
+  <string name="nominee_details">Nominee Details</string>
+  <string name="contact_details">Contact Details</string>
 </resources>

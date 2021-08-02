@@ -12,11 +12,13 @@ import com.pranisheba.sharedfarming.databinding.FragmentSettingsBinding
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
 import com.pranisheba.sharedfarming.ui.base.LoginActivity
 import com.pranisheba.sharedfarming.ui.base.MainActivity
+import com.pranisheba.sharedfarming.ui.profile.ProfileActivity
 
 class SettingsFragment : Fragment() {
 
   private lateinit var settingsViewModel: SettingsViewModel
   private var _binding: FragmentSettingsBinding? = null
+
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
@@ -48,6 +50,10 @@ class SettingsFragment : Fragment() {
         startActivity(Intent(context, MainActivity::class.java))
         activity?.finishAffinity()
       }
+    }
+
+    binding.profileCard.setOnClickListener {
+      startActivity(Intent(context, ProfileActivity::class.java))
     }
 
     return root

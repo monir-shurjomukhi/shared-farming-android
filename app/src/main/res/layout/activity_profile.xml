@@ -22,7 +22,7 @@
       android:orientation="vertical"
       android:padding="8dp">
 
-      <com.google.android.material.imageview.ShapeableImageView
+      <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -30,7 +30,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_baseline_person_24"
+        android:src="@drawable/ic_baseline_account_circle_24"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
       <TextView
@@ -41,7 +41,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:textSize="28sp"
+        android:text="John Doe"
+        android:textSize="24sp"
         android:textStyle="bold"
         tools:text="John Doe" />
 
@@ -53,8 +54,88 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="24sp"
+        android:text="john@doe.com"
+        android:textSize="16sp"
         tools:text="john@doe.com" />
+
+      <androidx.cardview.widget.CardView
+        android:id="@+id/personalCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawablePadding="16dp"
+          android:padding="16dp"
+          android:text="@string/personal_details"
+          android:textSize="16sp"
+          app:drawableStartCompat="@drawable/ic_baseline_person_24" />
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+        android:id="@+id/bankingCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawablePadding="16dp"
+          android:padding="16dp"
+          android:text="@string/banking_details"
+          android:textSize="16sp"
+          app:drawableStartCompat="@drawable/ic_baseline_business_center_24" />
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+        android:id="@+id/nomineeCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawablePadding="16dp"
+          android:padding="16dp"
+          android:text="@string/nominee_details"
+          android:textSize="16sp"
+          app:drawableStartCompat="@drawable/ic_baseline_description_24" />
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+        android:id="@+id/contactCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawablePadding="16dp"
+          android:padding="16dp"
+          android:text="@string/contact_details"
+          android:textSize="16sp"
+          app:drawableStartCompat="@drawable/ic_baseline_call_24" />
+      </androidx.cardview.widget.CardView>
     </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

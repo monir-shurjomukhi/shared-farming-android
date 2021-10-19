@@ -12,7 +12,12 @@
       android:title="@string/title_my_farms" />
 
   <item
-      android:id="@+id/navigation_settings"
-      android:icon="@drawable/ic_baseline_settings_24"
-      android:title="@string/title_settings" />
+      android:id="@+id/navigation_offers"
+      android:icon="@drawable/ic_dashboard_black_24dp"
+      android:title="@string/title_offers" />
+
+  <item
+      android:id="@+id/navigation_more"
+      android:icon="@drawable/ic_baseline_more_vert_24"
+      android:title="@string/title_more" />
 </menu>

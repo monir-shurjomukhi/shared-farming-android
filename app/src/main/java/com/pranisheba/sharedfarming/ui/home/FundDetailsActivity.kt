@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityFundDetailsBinding
@@ -60,7 +59,7 @@ class FundDetailsActivity : AppCompatActivity() {
       buyNow()
     }
 
-    fundDetailsViewModel.paymentCheckout.observe(this, Observer {
+    fundDetailsViewModel.paymentCheckout.observe(this, {
       Toast.makeText(
         this,
         "Congratulations! Your Fund is Successful!",

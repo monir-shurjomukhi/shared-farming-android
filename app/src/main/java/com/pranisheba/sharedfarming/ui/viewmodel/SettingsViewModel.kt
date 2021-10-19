@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.settings
+package com.pranisheba.sharedfarming.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

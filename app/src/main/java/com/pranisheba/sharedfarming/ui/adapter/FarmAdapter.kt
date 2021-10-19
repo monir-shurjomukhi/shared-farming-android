@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.myfarms
+package com.pranisheba.sharedfarming.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

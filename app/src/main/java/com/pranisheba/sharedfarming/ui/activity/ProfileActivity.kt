@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.profile
+package com.pranisheba.sharedfarming.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

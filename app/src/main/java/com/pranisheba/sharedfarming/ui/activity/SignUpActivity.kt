@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.base
+package com.pranisheba.sharedfarming.ui.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivitySignUpBinding
 import com.pranisheba.sharedfarming.model.UserSignUp
+import com.pranisheba.sharedfarming.ui.viewmodel.SignUpViewModel
 
 class SignUpActivity : AppCompatActivity() {
 

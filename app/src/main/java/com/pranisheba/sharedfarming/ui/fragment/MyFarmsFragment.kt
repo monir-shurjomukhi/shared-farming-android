@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.myfarms
+package com.pranisheba.sharedfarming.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pranisheba.sharedfarming.databinding.FragmentMyFarmsBinding
 import com.pranisheba.sharedfarming.model.Invoice
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
-import com.pranisheba.sharedfarming.ui.base.LoginActivity
+import com.pranisheba.sharedfarming.ui.activity.LoginActivity
+import com.pranisheba.sharedfarming.ui.adapter.FarmAdapter
+import com.pranisheba.sharedfarming.ui.viewmodel.MyFarmsViewModel
 
 class MyFarmsFragment : Fragment() {
 

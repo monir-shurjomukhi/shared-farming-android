@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.home
+package com.pranisheba.sharedfarming.ui.viewmodel
 
 import android.app.Activity
 import android.content.Context
@@ -11,6 +11,7 @@ import com.pranisheba.sharedfarming.model.FundOpportunity
 import com.pranisheba.sharedfarming.model.PaymentCheckout
 import com.pranisheba.sharedfarming.networking.ApiClient
 import com.pranisheba.sharedfarming.networking.ApiInterface
+import com.pranisheba.sharedfarming.ui.activity.FundDetailsActivity
 import com.sm.shurjopaysdk.listener.PaymentResultListener
 import com.sm.shurjopaysdk.model.RequiredDataModel
 import com.sm.shurjopaysdk.model.TransactionInfo

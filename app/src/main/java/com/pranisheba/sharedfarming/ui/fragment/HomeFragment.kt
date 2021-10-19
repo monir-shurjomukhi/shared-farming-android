@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.home
+package com.pranisheba.sharedfarming.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pranisheba.sharedfarming.databinding.FragmentHomeBinding
 import com.pranisheba.sharedfarming.model.FundOpportunity
+import com.pranisheba.sharedfarming.ui.adapter.FundAdapter
+import com.pranisheba.sharedfarming.ui.viewmodel.HomeViewModel
+import com.pranisheba.sharedfarming.ui.activity.FundDetailsActivity
 import com.pranisheba.sharedfarming.util.FUND_OPPORTUNITY
 
 

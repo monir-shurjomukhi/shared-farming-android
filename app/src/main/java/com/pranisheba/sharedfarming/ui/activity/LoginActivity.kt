@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.base
+package com.pranisheba.sharedfarming.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.ActivityLoginBinding
 import com.pranisheba.sharedfarming.model.UserLogin
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
+import com.pranisheba.sharedfarming.ui.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 

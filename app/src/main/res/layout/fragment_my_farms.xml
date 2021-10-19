@@ -5,7 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:padding="8dp"
-  tools:context=".ui.myfarms.MyFarmsFragment">
+  tools:context=".ui.fragment.MyFarmsFragment">
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"

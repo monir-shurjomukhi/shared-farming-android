@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.settings
+package com.pranisheba.sharedfarming.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.pranisheba.sharedfarming.R
 import com.pranisheba.sharedfarming.databinding.FragmentSettingsBinding
 import com.pranisheba.sharedfarming.preference.SharedFarmingPreference
-import com.pranisheba.sharedfarming.ui.base.LoginActivity
-import com.pranisheba.sharedfarming.ui.base.MainActivity
-import com.pranisheba.sharedfarming.ui.profile.ProfileActivity
+import com.pranisheba.sharedfarming.ui.viewmodel.SettingsViewModel
+import com.pranisheba.sharedfarming.ui.activity.LoginActivity
+import com.pranisheba.sharedfarming.ui.activity.MainActivity
+import com.pranisheba.sharedfarming.ui.activity.ProfileActivity
 
 class SettingsFragment : Fragment() {
 

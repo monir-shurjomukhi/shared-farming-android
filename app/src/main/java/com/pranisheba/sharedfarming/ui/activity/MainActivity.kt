@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.base
+package com.pranisheba.sharedfarming.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     // menu should be considered as top level destinations.
     val appBarConfiguration = AppBarConfiguration(
       setOf(
-        R.id.navigation_home, R.id.navigation_my_farms, R.id.navigation_settings
+        R.id.navigation_home, R.id.navigation_my_farms, R.id.navigation_offers, R.id.navigation_more
       )
     )
     setupActionBarWithNavController(navController, appBarConfiguration)

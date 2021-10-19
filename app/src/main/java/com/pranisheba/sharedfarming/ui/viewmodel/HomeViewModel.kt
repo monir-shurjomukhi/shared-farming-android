@@ -1,4 +1,4 @@
-package com.pranisheba.sharedfarming.ui.home
+package com.pranisheba.sharedfarming.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.pranisheba.sharedfarming.model.FundOpportunity
 import com.pranisheba.sharedfarming.networking.ApiClient
 import com.pranisheba.sharedfarming.networking.ApiInterface
+import com.pranisheba.sharedfarming.ui.fragment.HomeFragment
 import retrofit2.Call
 import retrofit2.Response
 
